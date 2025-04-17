@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const db = require('./models')
 
 require("dotenv").config(); //configuración de variables de entorno
 
@@ -11,7 +12,8 @@ app.get('/',(req,res)=>{
 
 const PORT = process.env.PORT || 3000; //configuracion del puerto
 
-app.listen(PORT,()=>{ 
-    console.log(PORT)
+app.listen(PORT,()=>{
+    console.log(`running in port ${PORT}`)
 })
 
+db.sequelize.sync() //sincroniza tus modelos con la base de datos.
